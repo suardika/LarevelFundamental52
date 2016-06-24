@@ -14,4 +14,9 @@ class PagesController extends Controller
         $last = 'Akbar';
         return view ('pages.about', compact('first', 'last'));
     }
+
+    public function contact()
+    {
+        return view ('pages.contact');
+    }
 }

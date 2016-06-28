@@ -30,15 +30,22 @@ class ArticlesController extends Controller
 		return view('articles.create');
 	}
 
-	public function store(Request $request)
+	public function store(CreateArticleRequest $request)
 	{
-		$this->validate($request, [
-			'title' => 'required|min:3',
-			'body'  => 'required',
-			'published_at' => 'required|date'
-		]);
-
 		Article::create($request->all());
+		return redirect('articles');
+	}
+
+	public function edit($id)
+	{
+		$article = Article::findOrFail($id);
+		return view('articles.edit', compact('article'));
+	}
+
+	public function update($id, Request $request)
+	{
+		$article = Article::findOrFail($id);
+		$article->update($request->all());
 		return redirect('articles');
 	}
 

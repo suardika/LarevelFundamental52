@@ -24,7 +24,12 @@ class ArticlesController extends Controller
 //		 return view ('articles.index', compact('articles'));
 
 //		$articles = Article::order_by('published_at', 'desc')->get();
-		$articles = Article::latest('published_at')->get();
+//		$articles = Article::latest('published_at')->get();
+//		return view ('articles.index', compact('articles'));
+
+//		$articles = Article::latest('published_at')->where('published_at', '<=', Carbon::now())->get();
+		$articles = Article::latest('published_at')->published()->get();
+//		$articles = Article::latest('published_at')->unpublished()->get();
 		return view ('articles.index', compact('articles'));
 
 	}
@@ -41,6 +46,15 @@ class ArticlesController extends Controller
 //		}
 //		return view('articles.show', compact('article'));
 		$article = Article::findOrFail($id);
+//		dd($article->published_at);
+//		dd($article->created_at);
+//		dd($article->created_at->year);
+//		dd($article->created_at->month);
+//		dd($article->created_at->addDays(8));
+//		dd($article->created_at->format('Y-m'));
+//		dd($article->created_at->addDays(8)->diffForHumans());
+//		dd($article->updated_at->addDays(8)->diffForHumans());
+		dd($article->published_at);
 		return view('articles.show', compact('article'));
 	}
 
@@ -51,9 +65,12 @@ class ArticlesController extends Controller
 
 	public function store()
 	{
-		$input = Request::all();
-		$input['published_at'] = Carbon::now();
-		Article::create($input);
+//		$input = Request::all();
+//		$input['published_at'] = Carbon::now();
+//		Article::create($input);
+//		return redirect('articles');
+
+		Article::create(Request::all());
 		return redirect('articles');
 	}
 

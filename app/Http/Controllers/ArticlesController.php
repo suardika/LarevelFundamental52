@@ -9,6 +9,7 @@ use App\Http\Requests\CreateArticleRequest;
 use Carbon\Carbon;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -29,8 +30,14 @@ class ArticlesController extends Controller
 		return view('articles.create');
 	}
 
-	public function store(CreateArticleRequest $request)
+	public function store(Request $request)
 	{
+		$this->validate($request, [
+			'title' => 'required|min:3',
+			'body'  => 'required',
+			'published_at' => 'required|date'
+		]);
+
 		Article::create($request->all());
 		return redirect('articles');
 	}

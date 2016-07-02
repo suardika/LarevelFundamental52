@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -32,6 +33,7 @@ class ArticlesController extends Controller
 
 	public function store(ArticleRequest $request)
 	{
+//		Auth::user();
 		Article::create($request->all());
 		return redirect('articles');
 	}

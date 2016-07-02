@@ -18,12 +18,7 @@ Route::get('/', function () {
 // Route::get('foo', function () {
 //     return 'bar';
 // });
-
 //Route::get('/', 'WelcomeController@index');
-
-Route::get('about', 'PagesController@about');
-Route::get('contact', 'PagesController@contact');
-
 //Route::get('articles', 'ArticlesController@index');
 //Route::get('articles/create', 'ArticlesController@create');
 //Route::get('articles/{id}', 'ArticlesController@show');
@@ -32,8 +27,18 @@ Route::get('contact', 'PagesController@contact');
 //Route::patch('articles/{article}', 'ArticlesController@update');
 //Route::delete('articles/{article}', 'ArticlesController@destroy');
 
+
+//Route::group(['middleware' => ['web']], function(){
+//
+//});
+
+Route::get('about', 'PagesController@about')->middleware('auth');
+Route::get('contact', 'PagesController@contact');
 Route::resource('articles', 'ArticlesController');
 
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
 
 
 

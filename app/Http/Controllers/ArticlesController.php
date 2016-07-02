@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	public function index()
 	{
+//		return auth::user()->name;
 		$articles = Article::latest('published_at')->published()->get();
 		return view ('articles.index', compact('articles'));
 	}
@@ -33,8 +39,12 @@ class ArticlesController extends Controller
 
 	public function store(ArticleRequest $request)
 	{
-//		Auth::user();
-		Article::create($request->all());
+//		Auth::user()->article()->save(new Article($request->all()));
+//		Article::create($request->all());
+//		return redirect('articles');
+
+		$article = new Article($request->all());
+		Auth::user()->articles()->save($article);
 		return redirect('articles');
 	}
 

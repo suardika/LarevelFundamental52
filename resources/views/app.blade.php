@@ -15,8 +15,30 @@
 </head>
 <body>
     <div class="container">
+        {{--@include('partials.flash')--}}
+        @include('flash::message')
         @yield('content')
     </div>
+
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+    {{--<script>--}}
+        {{--$(div.alert).not('.alert-important').delay(3000).slideUp(300);--}}
+    {{--</script>--}}
+
+    {{--<script>--}}
+        {{--$( document).ready( function(){--}}
+            {{--$('div.alert').not('.alert-important').delay(3000).slideUp(300);--}}
+        {{--});--}}
+    {{--</script>--}}
+
+    <script>
+    $( document).ready( function(){
+        $('#flash-overlay-modal').modal();
+    });
+    </script>
+
     @yield('footer')
 </body>
 </html>

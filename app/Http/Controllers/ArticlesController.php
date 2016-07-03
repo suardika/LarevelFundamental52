@@ -16,7 +16,9 @@ class ArticlesController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth');
+//		$this->middleware('auth');
+//		$this->middleware('auth', ['only' => 'create']);
+		$this->middleware('auth', ['except' => 'index']);
 	}
 
 	public function index()
@@ -34,6 +36,11 @@ class ArticlesController extends Controller
 
 	public function create()
 	{
+//		if (Auth::guest())
+//		{
+//			return redirect('articles');
+//		}
+
 		return view('articles.create');
 	}
 

@@ -40,6 +40,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+ Route::get('foo', function () {
+     return 'this page may only be viewed by managers';
+ })->middleware('manager');
+
 
 
 

@@ -27,6 +27,12 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot($router);
+
+//        $router->bind('articles', function($id) {
+//            return \App\Article::published()->findOrFail($id);
+//        });
+
+        $router->model('articles', 'App\Article');
     }
 
     /**

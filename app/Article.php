@@ -33,10 +33,22 @@ class Article extends Model
 //        $this->attributes['published_at'] = Carbon::parse($date);
     }
 
+
 //    public function writer()
 //    public function owner()
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get the tags associated with the given article.     *
+     *
+     */
+    
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
 }

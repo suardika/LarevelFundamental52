@@ -6,6 +6,7 @@ use App\Article;
 
 use App\Http\Requests\ArticleRequest;
 
+use App\Tag;
 use Carbon\Carbon;
 
 use App\Http\Requests;
@@ -44,7 +45,11 @@ class ArticlesController extends Controller
 //			return redirect('articles');
 //		}
 
-		return view('articles.create');
+//		$tags = \App\Tag::all();
+//		$tags = \App\Tag::lists('name');
+
+		$tags = Tag::lists('name', 'id');
+		return view('articles.create', compact('tags'));
 	}
 
 	public function store(ArticleRequest $request)
@@ -70,20 +75,42 @@ class ArticlesController extends Controller
 //			'flash_message'=>'Your article has been created!',
 //			'flash_message_important'=>true]);
 
-		Auth::user()->articles()->create($request->all());
-//		flash('Your article has been created!')->important();
-//		flash('Your article has been created!');
-//		flash()->success('Your article has been created!');
+//		Auth::user()->articles()->create($request->all());
+////		flash('Your article has been created!')->important();
+////		flash('Your article has been created!');
+////		flash()->success('Your article has been created!');
+//		flash()->overlay('Your article has been successfully created!', 'Good Job');
+//		return redirect('articles');
+
+//		dd($request->input('tags'));
+//
+//		Auth::user()->articles()->create($request->all());
+//		$tags = $request->input('tags');
+////		$articles->tags()->attach([1,2,3,4]);
+//		flash()->overlay('Your article has been successfully created!', 'Good Job');
+//		return redirect('articles');
+
+		$article = Auth::user()->articles()->create($request->all());
+		
+//		$tagIds = $request->input('tags');
+//		$article->tags()->attach($tagIds);
+
+		$article->tags()->attach($request->input('tag_list'));
+		
 		flash()->overlay('Your article has been successfully created!', 'Good Job');
 		return redirect('articles');
 
+//		flash('You are now logged in');
+//		return redirect('articles')->('flash_message');
 
 	}
 
 	public function edit(Article $article)
 	{
 //		$article = Article::findOrFail($id);
-		return view('articles.edit', compact('article'));
+
+		$tags = Tag::lists('name', 'id');
+		return view('articles.edit', compact('article', 'tags'));
 	}
 
 	public function update(Article $article, ArticleRequest $request)

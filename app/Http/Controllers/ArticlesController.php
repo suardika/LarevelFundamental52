@@ -91,12 +91,12 @@ class ArticlesController extends Controller
 //		return redirect('articles');
 
 		$article = Auth::user()->articles()->create($request->all());
-		
+
 //		$tagIds = $request->input('tags');
 //		$article->tags()->attach($tagIds);
 
 		$article->tags()->attach($request->input('tag_list'));
-		
+
 		flash()->overlay('Your article has been successfully created!', 'Good Job');
 		return redirect('articles');
 
@@ -113,9 +113,9 @@ class ArticlesController extends Controller
 		return view('articles.edit', compact('article', 'tags'));
 	}
 
-	public function update(Article $article, ArticleRequest $request)
-	{
-//		$article = Article::findOrFail($id);
+//		$article->tags()->attach($request->input('tag_list'));
+//		$article->tags()->detach($request->input('tag_list'));
+		$article->tags()->sync($request->input('tag_list'));
 		$article->update($request->all());
 		return redirect('articles');
 	}

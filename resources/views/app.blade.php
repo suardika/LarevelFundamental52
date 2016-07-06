@@ -11,6 +11,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -22,6 +23,7 @@
 
     <script type="text/javascript" src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/select2.min.js') }}"></script>
 
     {{--<script>--}}
         {{--$(div.alert).not('.alert-important').delay(3000).slideUp(300);--}}

@@ -113,6 +113,10 @@ class ArticlesController extends Controller
 		return view('articles.edit', compact('article', 'tags'));
 	}
 
+	public function update(ArticleRequest $request, Article $article)
+	{
+//		$article = Article::findOrFail($id);
+
 //		$article->tags()->attach($request->input('tag_list'));
 //		$article->tags()->detach($request->input('tag_list'));
 		$article->tags()->sync($request->input('tag_list'));

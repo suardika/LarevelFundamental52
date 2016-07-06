@@ -10,17 +10,22 @@
 
 <div class="form-group">
     {!! Form::label('published_at', 'Publish On:') !!}
-    {!! Form::input('date', 'published_at', date('Y-m-d'), ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'published_at', $article->published_at, ['class' => 'form-control']) !!}
+
+{{--    {!! Form::input('date', 'published_at', $article->published_at->format('Y-m-d'), ['class' => 'form-control']) !!}--}}
+{{--    {!! Form::input('date', 'published_at', null, ['class' => 'form-control']) !!}--}}
+{{--    {!! Form::input('date', 'published_at', date('Y-m-d'), ['class' => 'form-control']) !!}--}}
+
 </div>
 
 <div class="form-group">
+    {!! Form::label('tag_list', 'Tags:') !!}
+    {!! Form::select('tag_list[]', $tags, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
+
 {{--    {!! Form::label('tags', 'Tags:') !!}--}}
 {{--    {!! Form::select('tags', ['defaults'], null, ['class' => 'form-control', 'multiple']) !!}--}}
 {{--    {!! Form::select('tags[]', $tags, [1, 4], ['class' => 'form-control', 'multiple']) !!}--}}
 {{--    {!! Form::select('tags[]', $tags, $article->tagsList(), ['class' => 'form-control', 'multiple']) !!}--}}
-
-    {!! Form::label('tag_list', 'Tags:') !!}
-    {!! Form::select('tag_list[]', $tags, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
 
 </div>
 

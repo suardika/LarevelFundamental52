@@ -18,7 +18,7 @@ class ArticlesController extends Controller
 	/**
 	 * Create a new articles controller instance
 	 */
-	public function __construct() 
+	public function __construct()
 	{
 //		$this->middleware('auth');
 //		$this->middleware('auth', ['only' => 'create']);
@@ -42,6 +42,7 @@ class ArticlesController extends Controller
 	{
 //		dd($id);
 //		$article = Article::findOrFail($id);
+
 		return view('articles.show', compact('article'));
 	}
 

@@ -122,6 +122,8 @@ Route::get('about', 'PagesController@about')->middleware('auth');
 Route::get('contact', 'PagesController@contact');
 Route::resource('articles', 'ArticlesController');
 
+Route::get('tags/{tags}', 'TagsController@show');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

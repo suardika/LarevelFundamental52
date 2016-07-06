@@ -12,9 +12,12 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet">
 
 </head>
 <body>
+    @include('partials.nav')
+
     <div class="container">
         {{--@include('partials.flash')--}}
         @include('flash::message')
@@ -41,6 +44,7 @@
     });
     </script>
 
+    <script type="text/javascript" src="{{ asset('assets/js/myscript.js') }}"></script>
     @yield('footer')
 </body>
 </html>

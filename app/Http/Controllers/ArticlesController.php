@@ -18,7 +18,7 @@ class ArticlesController extends Controller
 	/**
 	 * Create a new articles controller instance
 	 */
-	public function __construct()
+	public function __construct() 
 	{
 //		$this->middleware('auth');
 //		$this->middleware('auth', ['only' => 'create']);
@@ -28,8 +28,12 @@ class ArticlesController extends Controller
 	public function index()
 	{
 //		return auth::user()->name;
+
 		$articles = Article::latest('published_at')->published()->get();
 		return view ('articles.index', compact('articles'));
+
+//		$latest = Article::latest()->first();
+//		return view ('articles.index', compact('articles', 'latest'));
 	}
 
 //	after change routeserviceprovider
